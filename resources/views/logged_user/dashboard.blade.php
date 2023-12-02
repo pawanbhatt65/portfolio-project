@@ -5,7 +5,7 @@
 @endsection
 
 @section('contents')
-    hello world
+    hello world!
 @endsection
 
 @section('scripts')
