@@ -1,0 +1,82 @@
+.logged-user-container {
+    max-width: 95%;
+}
+@media (min-width: 576px) {
+    .logged-user-container {
+        max-width: 95%;
+    }
+    .logged-user-container .col-sm-6 {
+        flex-basis: calc(50% - 8px);
+        width: calc(50% - 8px);
+    }
+}
+@media (min-width: 768px) {
+    .logged-user-container {
+        max-width: 95%;
+    }
+    .logged-user-container .col-md-3 {
+        flex-basis: calc(33.33% - 12px);
+        width: calc(33.33% - 12px);
+        margin: unset;
+    }
+}
+@media (min-width: 992px) {
+    .logged-user-container {
+        max-width: 95%;
+    }
+    .logged-user-container .col-sm-6 {
+        flex-basis: calc(50% - 14px);
+        width: calc(50% - 14px);
+        margin: unset;
+    }
+    .logged-user-container .col-md-3 {
+        flex-basis: calc(33.33% - 14px);
+        width: calc(33.33% - 14px);
+        margin: unset;
+    }
+    .logged-user-container .col-lg-4 {
+        flex-basis: calc(25% - 14px);
+        width: calc(25% - 14px);
+        margin: unset;
+    }
+}
+@media (min-width: 1200px) {
+    .logged-user-container {
+        max-width: 90%;
+    }
+    .logged-user-container .col-sm-6 {
+        flex-basis: calc(50% - 24px);
+        width: calc(50% - 24px);
+        margin: unset;
+    }
+    .logged-user-container .col-md-3 {
+        flex-basis: calc(33.33% - 24px);
+        width: calc(33.33% - 24px);
+        margin: unset;
+    }
+    .logged-user-container .col-lg-4 {
+        flex-basis: calc(25% - 24px);
+        width: calc(25% - 24px);
+        margin: unset;
+    }
+}
+@media (min-width: 1400px) {
+    .logged-user-container {
+        max-width: 80%;
+    }
+    .logged-user-container .col-sm-6 {
+        flex-basis: calc(50% - 30px);
+        width: calc(50% - 30px);
+        margin: unset;
+    }
+    .logged-user-container .col-md-3 {
+        flex-basis: calc(33.33% - 30px);
+        width: calc(33.33% - 30px);
+        margin: unset;
+    }
+    .logged-user-container .col-lg-4 {
+        flex-basis: calc(25% - 30px);
+        width: calc(25% - 30px);
+        margin: unset;
+    }
+}

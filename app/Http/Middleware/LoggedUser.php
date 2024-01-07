@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoggedUser
@@ -18,8 +19,8 @@ class LoggedUser
         if ($request->session()->has('isUser')) {
             return $next($request);
         } else {
-            dd("middleware error");
-            return redirect('eCommerce');
+            Alert::error('Sorry', 'Access denial!');
+            return redirect('e-commerce');
         }
     }
 }

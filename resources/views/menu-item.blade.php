@@ -12,7 +12,7 @@
                     <a href="{{ route('about') }}" class="menu-link">About</a>
                 </li>
                 <li class="{{ request()->routeIs('eCommerce') ? 'active' : '' }}">
-                    <a href="{{ route('eCommerce') }}" class="menu-link">Project</a>
+                    <a href="{{ route('eCommerce') }}" class="menu-link">Products</a>
                 </li>
                 <li class="{{ request()->routeIs('contactUs') ? 'active' : '' }}">
                     <a href="{{ route('contactUs') }}" class="menu-link">Contact Us</a>

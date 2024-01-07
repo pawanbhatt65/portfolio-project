@@ -16,22 +16,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
     <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+    {{-- logged-user-css --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/logged-user/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/logged-user/style.css') }}">
     {{-- title --}}
     <title>@yield('title')</title>
 </head>
 
 <body>
+    @include('sweetalert::alert')
     @include('models.contactModel')
     @include('models.loginModel')
     @include('models.registerModel')
     @include('models.everyModel')
+    @include('models.updatePasswordModel')
+    @include('models.showProductDescriptionModel')
+
     @yield('contents')
 
     {{-- intl-tel-input js --}}
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
     <script src="{{ asset('assets/js/contact.js') }}" type="module"></script>
     <script src="{{ asset('assets/js/login-signup.js') }}" type="module"></script>
-    <script src="{{ asset('assets/js/app.js') }}" defer></script>
+    <script src="{{ asset('assets/js/loggedUser/add-items.js') }}" type="module"></script>
+    <script src="{{ asset('assets/js/loggedUser/update-password.js') }}" type="module"></script>
+    <script src="{{ asset('assets/js/show-product-description.js') }}" type="module"></script>
 
     @yield('scripts')
 </body>

@@ -477,6 +477,12 @@
 .project-img-box {
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    height: 200px;
+}
+.project-img-box img {
+    width: 100%;
+    height: 100%;
 }
 .using-language {
     position: absolute;
@@ -649,6 +655,20 @@ input.nameClass:-internal-autofill-selected {
 }
 .form-group-submit {
     margin: 0;
+}
+@media (max-width: 992px) {
+    .form-group {
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .contact-us {
+        position: relative;
+    }
+    .get-into-touch {
+        margin-bottom: 50px;
+    }
 }
 /* contact.blade.php end */
 
@@ -823,3 +843,17 @@ input.nameClass:-internal-autofill-selected {
     border-radius: 50%;
 }
 /* everyModel.blade.php end */
+
+/* showProductDescriptionModel.blade.php start */
+.show-product-description-model-backdrop.active {
+    transform: translate(0);
+}
+.show-product-description-model-box.active {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.showProductPrice {
+    color: #f9322c;
+    font-weight: bolder;
+}
+/* showProductDescriptionModel.blade.php end */

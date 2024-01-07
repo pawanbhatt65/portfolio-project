@@ -21,9 +21,21 @@ Route::get('/contact-us', [ProfileController::class, 'contactUs'])->name('contac
 Route::post('/contactUsPost', [ProfileController::class, 'contactUsPost'])->name('contactUsPost');
 Route::post('/login-E-commerce', [ProfileController::class, 'logInECommerce'])->name('logInECommerce');
 Route::post('/register-e-commerce', [ProfileController::class, 'registerECommerce'])->name('registerECommerce');
+Route::get('/show-product-content', [ProfileController::class, 'showProductContent'])->name('showProductContent');
 
-Route::get('/login', [ProfileController::class, 'loginFunction'])->name('loginFunction');
+Route::group(['prefix' => 'user', 'middleware' => ['web', 'isUser']], function () {
+    Route::get('/dashboard', [ProfileController::class, 'userDashboard'])->name('dashboard');
+    Route::get('/item-list', [ProfileController::class, 'itemsList'])->name('user.itemsList');
+    Route::get('/add-items', [ProfileController::class, 'addItems'])->name('user.addItems');
+    Route::post('/store-items', [ProfileController::class, 'storeItems'])->name('user.storeItems');
+    Route::get('/edit-item', [ProfileController::class, 'editItems'])->name('user.editItems');
+    Route::post('/update-item', [ProfileController::class, 'updateItems'])->name('user.updateItems');
+    Route::get('/delete-item', [ProfileController::class, 'deleteItems'])->name('user.deleteItems');
+    Route::post('/update-password-send-mail', [ProfileController::class, 'updatePasswordSendMail'])->name('user.updatePasswordSendMail');
+    Route::get('/loggedUserShowProductContent', [ProfileController::class, 'loggedUserShowProductContent'])->name('user.loggedUserShowProductContent');
 
-Route::prefix('/user')->group(['middleware' => ['web', 'isUser']], function () {
-    Route::get('/dashboard', [ProfileController::class, 'userDashboard'])->name('user.dashboard');
+    // restore deleted product
+    Route::get('/restore-items', [ProfileController::class, 'restoreItems'])->name('user.restoreItems');
+
+    Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
 });

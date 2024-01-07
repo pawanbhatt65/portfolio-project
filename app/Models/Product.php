@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 
-class UserRegister extends Model
+class Product extends Model
 {
-    use HasFactory, Notifiable, SoftDeletes;
-    protected $table = "user_registers";
-    protected $primaryKey = "user_register_id";
+    use HasFactory, SoftDeletes;
+    protected $table = "products";
+    protected $primaryKey = "product_id";
     public $timestamps = true;
     public $softDeletes = true;
 
     protected $fillable = [
-        "user_register_id", "name", "phone", "email", "email_verify", "password", "confirm_password", "added_at", "edited_at",
+        'product_id', 'name', 'price', 'image', 'description', 'user_id', 'added_at', 'edited_at',
     ];
 
     /**
@@ -25,5 +24,4 @@ class UserRegister extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
-
 }

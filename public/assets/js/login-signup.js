@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
             loginFormSubmitHandler.addEventListener(
                 "submit",
                 async function (event) {
-                    event.preventDefault();
                     const loginEmail = this.loginEmail;
                     const loginPassword = this.loginPassword;
 
@@ -132,96 +131,104 @@ document.addEventListener("DOMContentLoaded", function () {
                         preventFormSubmitHandler(
                             loginPassword,
                             (loginPasswordError.textContent =
-                                "Please enter your valid password!")
+                                "Please enter your valid password!"), event
                         );
                         return false;
+                    }else {
+                        return;
                     }
-                    try {
-                        let url = loginRoute;
-                        let formData = new FormData(loginFormSubmitHandler);
-                        const response = await fetch(url, {
-                            method: "POST",
-                            headers: {
-                                Accept: "application/json",
-                            },
-                            body: formData,
-                        });
-                        // console.log(url);
-                        if (response.ok) {
-                            const data = await response.json();
-                            // console.log(data)
-                            if (data.message === "logged_in") {
-                                closeModelHandler(
-                                    body,
-                                    logInModelBackdrop,
-                                    logInContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "User successfully logged in!")
-                                );
-                                console.log("User successfully logged in!");
-                            } else if (
-                                data.message === "password_not_matched"
-                            ) {
-                                closeModelHandler(
-                                    body,
-                                    logInModelBackdrop,
-                                    logInContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "Password not matched!")
-                                );
-                                console.log("Password not matched!");
-                            } else if (data.message === "email_verify") {
-                                closeModelHandler(
-                                    body,
-                                    logInModelBackdrop,
-                                    logInContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "Email not verified!")
-                                );
-                                console.log("Email not verified!");
-                            } else if (data.message === "user_not_found") {
-                                closeModelHandler(
-                                    body,
-                                    logInModelBackdrop,
-                                    logInContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "User not register with us!")
-                                );
-                            } else {
-                                closeModelHandler(
-                                    body,
-                                    logInModelBackdrop,
-                                    logInContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "User not found 2!")
-                                );
-                            }
-                        } else {
-                            console.error("server error: ");
-                        }
-                    } catch (error) {
-                        console.error("catch error: ", error.message);
-                    }
+                    // try {
+                    //     let url = loginRoute;
+                    //     let formData = new FormData(loginFormSubmitHandler);
+                    //     const response = await fetch(url, {
+                    //         method: "POST",
+                    //         headers: {
+                    //             Accept: "application/json",
+                    //         },
+                    //         body: formData,
+                    //     });
+                    //     // console.log(url);
+                    //     if (response.ok) {
+                    //         const data = await response.json();
+                    //         // console.log(data)
+                    //         if (data.message === "logged_in") {
+                    //             closeModelHandler(
+                    //                 body,
+                    //                 logInModelBackdrop,
+                    //                 logInContactBox
+                    //             );
+                    //             showEveryModelFunctionHandler(
+                    //                 everyModelBackDrop,
+                    //                 everyModelBox,
+                    //                 (everyModelHeading.textContent =
+                    //                     "User successfully logged in!")
+                    //             );
+                    //             // window.location.href=data.redirect_url;
+                    //             console.log("User successfully logged in!");
+                    //         } else if (
+                    //             data.message === "password_not_matched"
+                    //         ) {
+                    //             event.preventDefault();
+                    //             closeModelHandler(
+                    //                 body,
+                    //                 logInModelBackdrop,
+                    //                 logInContactBox
+                    //             );
+                    //             showEveryModelFunctionHandler(
+                    //                 everyModelBackDrop,
+                    //                 everyModelBox,
+                    //                 (everyModelHeading.textContent =
+                    //                     "Password not matched!")
+                    //             );
+                    //             console.log("Password not matched!");
+                    //         } else if (data.message === "email_verify") {
+                    //             event.preventDefault();
+                    //             closeModelHandler(
+                    //                 body,
+                    //                 logInModelBackdrop,
+                    //                 logInContactBox
+                    //             );
+                    //             showEveryModelFunctionHandler(
+                    //                 everyModelBackDrop,
+                    //                 everyModelBox,
+                    //                 (everyModelHeading.textContent =
+                    //                     "Email not verified!")
+                    //             );
+                    //             console.log("Email not verified!");
+                    //         } else if (data.message === "user_not_found") {
+                    //             event.preventDefault();
+                    //             closeModelHandler(
+                    //                 body,
+                    //                 logInModelBackdrop,
+                    //                 logInContactBox
+                    //             );
+                    //             showEveryModelFunctionHandler(
+                    //                 everyModelBackDrop,
+                    //                 everyModelBox,
+                    //                 (everyModelHeading.textContent =
+                    //                     "User not register with us!")
+                    //             );
+                    //         } else {
+                    //             event.preventDefault();
+                    //             closeModelHandler(
+                    //                 body,
+                    //                 logInModelBackdrop,
+                    //                 logInContactBox
+                    //             );
+                    //             showEveryModelFunctionHandler(
+                    //                 everyModelBackDrop,
+                    //                 everyModelBox,
+                    //                 (everyModelHeading.textContent =
+                    //                     "User not found 2!")
+                    //             );
+                    //         }
+                    //     } else {
+                    //         event.preventDefault();
+                    //         console.error("server error: ");
+                    //     }
+                    // } catch (error) {
+                    //     console.error("catch error: ", error.message);
+                    // }
                 }
             );
         }

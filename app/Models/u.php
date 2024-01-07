@@ -20,10 +20,41 @@ class UserRegister extends Model
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'confirm_password',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Always encrypt password when it is updated.
+     *
+     * @param $value
+     * @return string
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = md5($value);
+    }
+
+    /**
+     * Always set confirm_password as plain text when it is updated.
+     *
+     * @param $value
+     * @return string
+     */
+    public function setConfirmPasswordAttribute($value)
+    {
+        $this->attributes['confirm_password'] = md5($value);
+    }
 }

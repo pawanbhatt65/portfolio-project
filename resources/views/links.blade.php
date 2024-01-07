@@ -15,14 +15,49 @@
 <div class="arrow-btns">
     <ul class="arrow">
         <li>
-            <button class="arrow-left arrow-btn">
-                <i class="fa-solid fa-angle-left"></i>
-            </button>
+            @if (url()->current() === route('home'))
+            @elseif (url()->current() === route('about'))
+                <a href="{{ route('home') }}">
+                    <button class="arrow-left arrow-btn">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                </a>
+            @elseif (url()->current() === route('eCommerce'))
+                <a href="{{ route('about') }}">
+                    <button class="arrow-left arrow-btn">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                </a>
+            @elseif (url()->current() === route('contactUs'))
+                <a href="{{ route('eCommerce') }}">
+                    <button class="arrow-left arrow-btn">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                </a>
+            @endif
         </li>
         <li>
-            <button class="arrow-right arrow-btn">
-                <i class="fa-solid fa-angle-right"></i>
-            </button>
+            @if (url()->current() === route('home'))
+                <a href="{{ route('about') }}">
+                    <button class="arrow-right arrow-btn">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            @elseif (url()->current() === route('about'))
+                <a href="{{ route('eCommerce') }}">
+                    <button class="arrow-right arrow-btn">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            @elseif (url()->current() === route('eCommerce'))
+                <a href="{{ route('contactUs') }}">
+                    <button class="arrow-right arrow-btn">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            @elseif (url()->current() === route('contactUs'))
+            @endif
+
         </li>
     </ul>
 </div>

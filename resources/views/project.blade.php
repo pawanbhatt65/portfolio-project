@@ -31,66 +31,30 @@
                         <h2>Product Items</h2>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6">
-                    <div class="project-box">
-                        <div class="project-img-box">
-                            <img src="{{ asset('assets/images/findnest.png') }}" alt="FindNest" class="img"
-                                title="FindNest">
-                            <div class="project-title">
-                                <p>FindNest</p>
+                @if (count($products) > 0)
+                    @foreach ($products as $product)
+                        <div class="col-12 col-sm-6">
+                            <div class="project-box">
+                                <div class="project-img-box clickedProductDescription"
+                                    data-product-id="{{ $product->product_id }}">
+                                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img"
+                                        title="{{ $product->name }}">
+                                    <div class="project-title">
+                                        <p>{{ $product->name }}</p>
+                                    </div>
+                                </div>
+                                <div class="about-project">
+                                    <button type="button" class="btn">Buy Now</button>
+                                    <button type="button" class="btn">Add to Cart</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="about-project">
-                            <button type="button" class="btn">Buy Now</button>
-                            <button type="button" class="btn">Add to Cart</button>
-                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12">
+                        <h1 class="text-center">No product found yet!</h1>
                     </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <div class="project-box">
-                        <div class="project-img-box">
-                            <img src="{{ asset('assets/images/findnest.png') }}" alt="FindNest" class="img"
-                                title="FindNest">
-                            <div class="project-title">
-                                <p>FindNest</p>
-                            </div>
-                        </div>
-                        <div class="about-project">
-                            <button type="button" class="btn">Buy Now</button>
-                            <button type="button" class="btn">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <div class="project-box">
-                        <div class="project-img-box">
-                            <img src="{{ asset('assets/images/findnest.png') }}" alt="FindNest" class="img"
-                                title="FindNest">
-                            <div class="project-title">
-                                <p>FindNest</p>
-                            </div>
-                        </div>
-                        <div class="about-project">
-                            <button type="button" class="btn">Buy Now</button>
-                            <button type="button" class="btn">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <div class="project-box">
-                        <div class="project-img-box">
-                            <img src="{{ asset('assets/images/findnest.png') }}" alt="FindNest" class="img"
-                                title="FindNest">
-                            <div class="project-title">
-                                <p>FindNest</p>
-                            </div>
-                        </div>
-                        <div class="about-project">
-                            <button type="button" class="btn">Buy Now</button>
-                            <button type="button" class="btn">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
             {{-- product-items-section-end --}}
 

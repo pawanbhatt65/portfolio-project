@@ -4,6 +4,14 @@ const body = document.body;
 const contactModelBackdrop = document.querySelector(".contact--model-backdrop");
 const contactModelBox = document.querySelector(".contact-model-box");
 
+// every model variable
+const everyModelBackDrop = document.querySelector(".every-model-backdrop");
+const everyModelBox = document.querySelector(".every-model-box");
+const closeEveryModelHandler = document.querySelectorAll(
+    ".closeEveryModelHandler"
+);
+const everyModelHeading = document.querySelector(".everyModelHeading");
+
 // name change handler function
 export const nameChangeHandler = function (event) {
     const nameValue = event.target.value;
@@ -241,3 +249,107 @@ export const showEveryModelFunctionHandler = function (
     modelText;
     body.style.overflow = "hidden";
 };
+
+// itemNameChangeHandler function
+export const itemNameChangeHandler=function(event) {
+    const itemNameValue=event.target.value;
+    const nameRegex=/^[a-z-A-Z-0-9-\s]+$/;
+    if(itemNameValue.trim().length===0) {
+        this.textContent="Please enter your product name!";
+    } else if (!nameRegex.test(itemNameValue)) {
+        this.textContent="Please enter only letter, number, and hyphen!";
+    } else {
+        this.textContent="";
+    }
+}
+
+// itemPriceChangeHandler function
+export const itemPriceChangeHandler=function(event) {
+    const priceValue=event.target.value;
+    const dotComma=/^[0-9.]+$/;
+    if(priceValue.trim().length===0) {
+        this.textContent="Please enter your product price!";
+    } else if (!dotComma.test(priceValue)) {
+        this.textContent = "Please enter only digit, dot, and comma!";
+    } else {
+        this.textContent="";
+    }
+}
+
+// imageChangeHandler function
+export const imageChangeHandler=function(event) {
+    const imageValue=event.target.value;
+    if(imageValue.trim().length===0) {
+        this.textContent="Please select your product image!";
+    }else {
+        this.textContent="";
+    }
+}
+
+// valid file type function
+export const validFileType=function(itemImage) {
+    let fileValue=itemImage.value;
+    const getIndexFromLast=fileValue.lastIndexOf(".")+1;
+    // console.log("Get index form start but last value: ", getIndexFromLast)
+    const getFileExtension=fileValue.substr(getIndexFromLast, fileValue.length).toLowerCase();
+    // console.log("get file extension: ", getFileExtension)
+    if(getFileExtension === "jpg" || getFileExtension==="jpeg"||getFileExtension==="png"){
+        return true;
+    } else {
+         // close every model handler
+        closeEveryModelHandler.forEach((closeBtn) => {
+            closeBtn.addEventListener("click", function () {
+                closeModelHandler(body, everyModelBackDrop, everyModelBox);
+            });
+        });
+        showEveryModelFunctionHandler(everyModelBackDrop,
+            everyModelBox,
+            (everyModelHeading.textContent =
+                "Only accept jpg, jpeg, and png file!"))
+        itemImage.value="";
+        return false;
+    }
+}
+
+// generateModelBox function
+export const generateModelBox=async function  (contentURL) {
+    const response=await fetch(contentURL);
+    if(response.ok) {
+        const data=await response.json();
+        if(data){
+            const product=data.product;
+            // console.log(product)
+            const html=`
+                <h4 class="showProductDescriptionModelHeading">${product.name}</h4>
+                <p class="showProductDescriptionModelText">${product.description}</p>
+                <p class="showProductPrice">${product.price}</p>
+            `;
+            return html;
+        } else {
+            console.log("data not available there!");
+        }
+    } else {
+        console.log("server error");
+    }
+}
+
+// generateLoggedUserModelBox function
+export const generateLoggedUserModelBox=async function (contentURL) {
+    const response=await fetch(contentURL);
+    if(response.ok) {
+        const data=await response.json();
+        if (data){
+            const product=data.product;
+            const html=`
+                <h4 class="showProductDescriptionModelHeading">${product.name}</h4>
+                <p class="showProductDescriptionModelText">${product.description}</p>
+                <p class="showProductPrice">${product.price}</p>
+            `;
+            return html;
+        } else {
+            console.log("Data not available there!");
+        }
+    } else {
+        console.log("Server error");
+    }
+}

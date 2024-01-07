@@ -5,7 +5,7 @@
             <i class="fa-solid fa-xmark"></i>
         </div>
         <div class="model-main-box">
-            <form action="" class="" method="POST" name="loginFormSubmitHandler">
+            <form action="{{ route('logInECommerce') }}" class="" method="POST" name="loginFormSubmitHandler">
                 @csrf
                 <div class="form-group">
                     <label for="loginEmail">Email</label>

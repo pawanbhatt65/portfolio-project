@@ -1,0 +1,100 @@
+.logged-user-header-row .header-col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logged-user-header-row .bars {
+    position: relative;
+    margin: 0;
+}
+
+/* logged-user dashboard.blade.php start */
+.no-product {
+    text-align: center;
+}
+.no-product h1 {
+    font-size: 66px;
+    color: #ffffff;
+    font-weight: bolder;
+}
+/* logged-user dashboard.blade.php end */
+
+/* add-items.blade.php start */
+.added-items-form .form-image {
+    flex-basis: 100%;
+    width: 100%;
+}
+.form-image input {
+    cursor: pointer;
+    user-select: none;
+}
+.form-image input::-webkit-file-upload-button {
+    visibility: hidden;
+    padding: 0;
+    width: 0;
+}
+/* add-items.blade.php end */
+
+/* item-list.blade.php start */
+.product-table {
+    overflow-x: auto;
+}
+/* table {
+    table-layout: fixed;
+} */
+table td,
+table th {
+    overflow: hidden;
+    padding-inline: 10px;
+}
+.responsive-table {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.responsive-table thead {
+    background-color: #0077ba;
+}
+.responsive-table thead tr {
+    border: none;
+}
+.responsive-table thead tr th {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    padding: 10px 0px;
+}
+.responsive-table tbody tr {
+    background-color: #d4cfcf;
+    border: none;
+}
+.responsive-table tbody tr:nth-child(even) {
+    background-color: #4e545a;
+}
+.responsive-table tbody tr td {
+    color: #222;
+}
+.responsive-table tbody tr td,
+.responsive-table tbody tr td a {
+    text-align: center;
+    margin-block: 10px;
+}
+.responsive-table tbody tr td a {
+    display: inline-table;
+}
+.responsive-table tbody tr td a button {
+    width: 80px;
+}
+/* item-list.blade.php end */
+
+/* updatePasswordModel.blade.php start */
+.updatePassword-model-backdrop.active {
+    transform: translate(0);
+}
+.updatePassword-contact-box.active {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/* updatePasswordModel.blade.php end */
