@@ -4,22 +4,23 @@ namespace App\Mail;
 
 use App\Models\UserRegister;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class LoginMail extends Mailable
 {
-    use Queueable, SerializesModels, ShouldQueue;
+    use Queueable, SerializesModels;
+    public $userRegister;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public UserRegister $userRegister)
+    public function __construct($userRegister)
     {
-        //
+        $this->userRegister = $userRegister;
     }
 
     /**
@@ -28,8 +29,8 @@ class LoginMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('2712chandra@gmail.com', 'Pawan Bhatt'),
-            subject: 'Logged In',
+            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
+            subject: 'Registration Mail',
         );
     }
 
@@ -40,6 +41,7 @@ class LoginMail extends Mailable
     {
         return new Content(
             view: 'mail.registerMail',
+            with: ['userRegister' => $this->userRegister]
         );
     }
 

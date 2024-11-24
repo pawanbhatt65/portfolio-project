@@ -1,3 +1,8 @@
+@php
+    $id = session('user_id');
+    $user = \App\Models\UserRegister::where('user_register_id', $id)->first();
+@endphp
+
 <div class="backdrop updatePassword-model-backdrop"></div>
 <div class="model updatePassword-contact-box login-form">
     <div class="model-inner">
@@ -5,12 +10,13 @@
             <i class="fa-solid fa-xmark"></i>
         </div>
         <div class="model-main-box">
-            <form action="{{ route('user.updatePasswordSendMail') }}" class="" method="POST"
+            <form action="{{ route('user.updatePasswordSendMail') }}" method="POST"
                 name="updatePasswordFormSubmitHandler">
                 @csrf
                 <div class="form-group">
                     <label for="updatePasswordEmail">Email</label>
-                    <input type="text" name="updatePasswordEmail" id="updatePasswordEmail" class="nameClass" />
+                    <input type="text" name="updatePasswordEmail" id="updatePasswordEmail" class="nameClass"
+                        value="{{ $user->email }}" readonly />
                     <span class="error" id="updatePasswordEmailError"></span>
                 </div>
                 <div class="form-group login-password-form-group">

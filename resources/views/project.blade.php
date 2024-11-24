@@ -18,7 +18,9 @@
                             <button type="button" class="btn lonInBtn">LogIn</button>
                             <button type="button" class="btn signUpBtn">SignUp</button>
                         </div>
-                        <p class="forgot-password centered">Forgot Password?</p>
+                        <p class="forgot-password centered showForgotPasswordModel">
+                            Forgot Password?
+                        </p>
                     </div>
                 </div>
             </div>
@@ -28,7 +30,15 @@
             <div class="row equal-height margin-bottom-50 e-commerce-product-items">
                 <div class="col-12">
                     <div class="skills-heading">
-                        <h2>Product Items</h2>
+                        <ul class="product-items items-list">
+                            <li>
+                                <h2>Product Items</h2>
+                            </li>
+                            <li class="cartItems">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <sup class="cart-quantity">0</sup>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 @if (count($products) > 0)
@@ -45,7 +55,8 @@
                                 </div>
                                 <div class="about-project">
                                     <button type="button" class="btn">Buy Now</button>
-                                    <button type="button" class="btn">Add to Cart</button>
+                                    <button type="button" class="btn addToCart"
+                                        data-product-id="{{ $product->product_id }}">Add to Cart</button>
                                 </div>
                             </div>
                         </div>

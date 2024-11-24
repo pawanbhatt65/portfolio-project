@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [ProfileController::class, 'home'])->name('home');
-Route::get('/about', [ProfileController::class, 'about'])->name('about');
-Route::get('/e-commerce', [ProfileController::class, 'eCommerce'])->name('eCommerce');
-Route::get('/contact-us', [ProfileController::class, 'contactUs'])->name('contactUs');
-Route::post('/contactUsPost', [ProfileController::class, 'contactUsPost'])->name('contactUsPost');
-Route::post('/login-E-commerce', [ProfileController::class, 'logInECommerce'])->name('logInECommerce');
-Route::post('/register-e-commerce', [ProfileController::class, 'registerECommerce'])->name('registerECommerce');
-Route::get('/show-product-content', [ProfileController::class, 'showProductContent'])->name('showProductContent');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', [MainController::class, 'home'])->name('home');
+    Route::get('/about', [MainController::class, 'about'])->name('about');
+    Route::get('/e-commerce', [MainController::class, 'eCommerce'])->name('eCommerce');
+    Route::get('/contact-us', [MainController::class, 'contactUs'])->name('contactUs');
+    Route::post('/contactUsPost', [MainController::class, 'contactUsPost'])->name('contactUsPost');
+    Route::post('/login-E-commerce', [AuthController::class, 'logInECommerce'])->name('logInECommerce');
+    Route::post('/register-e-commerce', [AuthController::class, 'registerECommerce'])->name('registerECommerce');
+    Route::get('/show-product-content', [MainController::class, 'showProductContent'])->name('showProductContent');
+    Route::get('/verify-mail', [AuthController::class, 'verifyMail'])->name('verifyMail');
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+    Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
+    Route::post('/reset-password', [AuthController::class, 'resetPasswordPost'])->name('resetPasswordPost');
+});
 
 Route::group(['prefix' => 'user', 'middleware' => ['web', 'isUser']], function () {
     Route::get('/dashboard', [ProfileController::class, 'userDashboard'])->name('dashboard');
@@ -37,5 +45,5 @@ Route::group(['prefix' => 'user', 'middleware' => ['web', 'isUser']], function (
     // restore deleted product
     Route::get('/restore-items', [ProfileController::class, 'restoreItems'])->name('user.restoreItems');
 
-    Route::get('/logout', [ProfileController::class, 'logout'])->name('logout');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

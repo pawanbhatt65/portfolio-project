@@ -10,7 +10,7 @@
             @include('logged_user/logged-user-menu-items')
 
             {{-- List-items-heading-section-start --}}
-            <div class="row equal-height margin-bottom-50 e-commerce-product-items">
+            {{-- <div class="row equal-height margin-bottom-50 e-commerce-product-items">
                 <div class="col-12">
                     <div class="skills-heading">
                         <h2>List of Items</h2>
@@ -19,7 +19,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- product-items-section-end --}}
 
             {{-- List-items-row-start --}}

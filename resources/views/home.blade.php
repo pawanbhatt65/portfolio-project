@@ -14,18 +14,16 @@
                     <div class="content">
                         <div class="content-text">
                             <div class="profile-img">
-                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="Pawan Bhatt" title="Pawan Bhatt"
+                                <img src="{{ asset('assets/images/pawan.JPG') }}" alt="Pawan Bhatt" title="Pawan Bhatt"
                                     class="img">
                             </div>
-                            <h3>Hi there, this is Pawan Bhatt.</h3>
+                            <h3>Hi there! 👋, this is Pawan Bhatt.</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, optio? Nisi quaerat
-                                numquam at nobis saepe voluptatem pariatur molestiae distinctio, quibusdam alias explicabo
-                                quam accusamus quia quod reprehenderit officia quas ullam necessitatibus ex possimus sit
-                                repellendus ducimus! Nemo vitae, harum dolorum, est ex unde expedita accusamus molestiae
-                                itaque veritatis consequatur.
+                                I'm a passionate Full Stack Developer with over 3 years of experience crafting dynamic,
+                                user-friendly, and visually appealing web applications. My journey in web development has
+                                equipped me with expertise in both frontend and backend technologies, allowing me to build
+                                seamless and interactive experiences for users.
                             </p>
-                            {{-- <a href="https://caferati.me/">https://caferati.me/</a> --}}
                         </div>
                     </div>
                 </div>

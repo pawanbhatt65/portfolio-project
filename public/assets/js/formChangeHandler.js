@@ -11,7 +11,7 @@ const closeEveryModelHandler = document.querySelectorAll(
     ".closeEveryModelHandler"
 );
 const everyModelHeading = document.querySelector(".everyModelHeading");
-
+    
 // name change handler function
 export const nameChangeHandler = function (event) {
     const nameValue = event.target.value;
@@ -184,7 +184,7 @@ export const successSubmitHandlerFunction = function (event) {
         );
         return false;
     } else {
-        showModelHandler(contactModelBackdrop, contactModelBox);
+        // showModelHandler(contactModelBackdrop, contactModelBox);
         return true;
     }
 };

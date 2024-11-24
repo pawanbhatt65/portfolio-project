@@ -25,12 +25,30 @@
 
 <body>
     @include('sweetalert::alert')
-    @include('models.contactModel')
-    @include('models.loginModel')
-    @include('models.registerModel')
+    @if (url()->current() === route('contactUs'))
+        @include('models.contactModel')
+    @endif
     @include('models.everyModel')
-    @include('models.updatePasswordModel')
-    @include('models.showProductDescriptionModel')
+    @if (url()->current() === route('dashboard') ||
+            url()->current() === route('user.itemsList') ||
+            url()->current() === route('user.addItems') ||
+            url()->current() === route('user.editItems'))
+        @include('models.updatePasswordModel')
+    @endif
+
+    @if (url()->current() === route('dashboard') || url()->current() === route('eCommerce'))
+        @include('models.showProductDescriptionModel')
+    @endif
+
+    @if (url()->current() === route('eCommerce'))
+        @include('models.loginModel')
+        @include('models.registerModel')
+        @include('models.cartItemModel')
+    @endif
+
+    @if (url()->current() === route('eCommerce'))
+        @include('models.forgotPasswordModel')
+    @endif
 
     @yield('contents')
 
@@ -42,6 +60,11 @@
     <script src="{{ asset('assets/js/loggedUser/add-items.js') }}" type="module"></script>
     <script src="{{ asset('assets/js/loggedUser/update-password.js') }}" type="module"></script>
     <script src="{{ asset('assets/js/show-product-description.js') }}" type="module"></script>
+    <script src="{{ asset('assets/js/cart.js') }}" type="module"></script>
+
+    @if (url()->current() === route('eCommerce') || url()->current() === route('resetPassword'))
+        <script src="{{ asset('assets/js/forgot_password.js') }}" type="module"></script>
+    @endif
 
     @yield('scripts')
 </body>

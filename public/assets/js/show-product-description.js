@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // loggedUserProductDescription model
     const clickedLoggedUserProductDescription=document.querySelectorAll(".clickedLoggedUserProductDescription");
 
-    if (clickedProductDescription) {
+    if (clickedProductDescription && mainContentBox) {
         mainContentBox.innerHTML = "";
         clickedProductDescription.forEach((btn) => {
             btn.addEventListener("click", function () {
@@ -67,11 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
                 });
             });
+            showProductDescriptionModelBackdrop.addEventListener("click", () => {
+                closeModelHandler(
+                    body,
+                    showProductDescriptionModelBackdrop,
+                    showProductDescriptionModelBox
+                );
+            });
         });
     }
 
     // show logged user product description functionality
-    if(clickedLoggedUserProductDescription) {
+    if(clickedLoggedUserProductDescription && mainContentBox) {
         mainContentBox.innerHTML="";
         clickedLoggedUserProductDescription.forEach(btn=>{
             btn.addEventListener("click", event=>{

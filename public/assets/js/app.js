@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const showMenuItem = document.getElementById("showMenuItem");
     const menuItem = document.getElementById("menuItem");
 
-    // read-more button variable
+    // download resume btn on about page for about.blade.php
+    const resume_download_btn_elm=document.querySelector(".resume_download_btn")
+
+    // read-more button variable on about page for about.blade.php
     const aboutProject = document.querySelectorAll(".about-project");
 
     // three bar button click function
@@ -25,6 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
         showMenuItem.addEventListener("click", showMenuItemValidation);
+    }
+
+    // download resume button click handler
+    if (resume_download_btn_elm && resumePath) {
+        resume_download_btn_elm.addEventListener("click", (event)=>{
+            event.preventDefault();
+            const link=document.createElement("a");
+            link.href=resumePath;
+            link.download="pawan-dev.pdf";
+            link.dispatchEvent(new MouseEvent("click"));
+        })
     }
 
     // read-more button function

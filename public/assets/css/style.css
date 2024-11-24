@@ -227,6 +227,8 @@
 .profile-img > img {
     width: 200px;
     border-radius: 50%;
+    height: 200px;
+    object-fit: contain;
 }
 .media-link {
     position: absolute;
@@ -307,6 +309,13 @@
         margin-inline: auto;
     }
 }
+.about-me-text h2,
+.about-me-text h3 {
+    margin-bottom: 10px;
+}
+.about-me-text h3 {
+    margin-top: 20px;
+}
 .skills-heading {
     text-align: center;
     text-transform: uppercase;
@@ -370,39 +379,39 @@
     background-color: #712cf9;
 }
 .learning-progress-box.javascript::before {
-    width: 60%;
+    width: 70%;
     background-color: rgb(240 220 78);
 }
 .learning-progress-box.jquery::before {
-    width: 50%;
+    width: 60%;
     background-color: #0268ae;
 }
 .learning-progress-box.reactJs::before {
-    width: 50%;
+    width: 70%;
     background-color: #017fa5;
 }
 .learning-progress-box.php::before {
-    width: 50%;
+    width: 70%;
     background-color: #4f5b93;
 }
 .learning-progress-box.mysql::before {
-    width: 68%;
+    width: 75%;
     background-color: #f29221;
 }
 .learning-progress-box.laravel::before {
-    width: 65%;
+    width: 68%;
     background-color: #f9322c;
 }
 .learning-progress-box.restfulAPI::before {
-    width: 60%;
+    width: 68%;
     background-color: #376ea7;
 }
 .learning-progress-box.postgreSQL::before {
-    width: 30%;
+    width: 50%;
     background-color: #32658e;
 }
 .learning-progress-box.gitBash::before {
-    width: 60%;
+    width: 80%;
     background-color: #4e545a;
 }
 .learning-progress-box.gitGUI::before {
@@ -414,52 +423,71 @@
     background-color: #23282d;
 }
 .learning-progress-box.photoShop::before {
-    width: 20%;
+    width: 40%;
     background-color: #2daaff;
 }
 .learning-progress-box.figma::before {
-    width: 20%;
+    width: 40%;
     background-color: #ff7262;
 }
 .learning-progress-box > p {
     position: absolute;
     top: 0px;
 }
-.learning-progress-box.html > p,
-.learning-progress-box.css > p,
-.learning-progress-box.bootstrap > p,
-.learning-progress-box.postgreSQL > p {
-    left: 70%;
+.learning-progress-box.html > p {
+    left: 80%;
 }
-.learning-progress-box.sass > p,
-.learning-progress-box.javascript > p,
-.learning-progress-box.restfulAPI > p,
-.learning-progress-box.gitBash > p {
+.learning-progress-box.css > p {
+    left: 80%;
+}
+.learning-progress-box.bootstrap > p {
+    left: 80%;
+}
+.learning-progress-box.postgreSQL > p {
     left: 50%;
 }
-.learning-progress-box.jquery > p,
-.learning-progress-box.reactJs > p,
-.learning-progress-box.php > p,
+.learning-progress-box.sass > p {
+    left: 60%;
+}
+.learning-progress-box.javascript > p {
+    left: 70%;
+}
+.learning-progress-box.restfulAPI > p {
+    left: 68%;
+}
+.learning-progress-box.gitBash > p {
+    left: 80%;
+}
+.learning-progress-box.jquery > p {
+    left: 60%;
+}
+.learning-progress-box.reactJs > p {
+    left: 70%;
+}
+.learning-progress-box.php > p {
+    left: 70%;
+}
 .learning-progress-box.gitGUI > p {
-    left: 40%;
+    left: 50%;
 }
 .learning-progress-box.mysql > p {
-    left: 58%;
+    left: 75%;
 }
 .learning-progress-box.laravel > p {
-    left: 55%;
+    left: 68%;
 }
 .learning-progress-box.wordPress > p {
-    left: 70%;
+    left: 80%;
 }
 .learning-progress-box.photoShop > p,
 .learning-progress-box.figma > p {
-    left: 10%;
+    left: 40%;
 }
 .download-resume {
     text-align: center;
 }
-.download-resume > a {
+.download-resume > a,
+.download-resume > button {
     width: 220px;
     display: inline-block;
 }
@@ -552,11 +580,15 @@
     color: #fff;
     padding: 20px;
 }
-.about-project > p {
+.about-project > p,
+.about-project > ul {
     text-align: justify;
 }
+.about-project > ul > li:not(:last-child) {
+    padding-bottom: 8px;
+}
 .min-height {
-    height: 200px;
+    height: 55px;
     overflow: hidden;
 }
 .min-height.active {
@@ -567,6 +599,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media only screen and (max-width: 399px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(106px, -123px);
+    }
+}
+@media only screen and (min-width: 400px) and (max-width: 567px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(60px, -80px);
+    }
+}
+@media only screen and (min-width: 568px) and (max-width: 767px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(92px, -110px);
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(120px, -145px);
+    }
+}
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(74px, -95px);
+    }
+}
+@media only screen and (min-width: 1201px) and (max-width: 1400px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(115px, -127px);
+    }
+}
+@media only screen and (min-width: 1401px) {
+    .project-box:hover .live {
+        transform: rotate(45deg) translate(112px, -128px);
+    }
 }
 /* projects-end */
 /* about.blade.php end */
@@ -683,6 +750,7 @@ input.nameClass:-internal-autofill-selected {
     z-index: 13;
     transform: translateY(-100vh);
     transition: all 0.7s ease-in-out;
+    cursor: pointer;
 }
 .contact--model-backdrop.active {
     transform: translate(0);
@@ -699,6 +767,7 @@ input.nameClass:-internal-autofill-selected {
     border-radius: 30px;
     padding: 30px;
     transition: all 0.7s ease-in-out;
+    cursor: pointer;
 }
 .contact-model-box.active {
     top: 50%;
@@ -751,6 +820,9 @@ input.nameClass:-internal-autofill-selected {
     color: #0077ba;
 }
 /* product-items-section-start */
+.product-items li:last-child {
+    cursor: pointer;
+}
 .e-commerce-product-items .about-project {
     display: flex;
     justify-content: space-between;
@@ -857,3 +929,148 @@ input.nameClass:-internal-autofill-selected {
     font-weight: bolder;
 }
 /* showProductDescriptionModel.blade.php end */
+
+/* cartItemModel.blade.php start */
+.cart-backdrop {
+    transform: translate(100vw, 0);
+    cursor: pointer;
+}
+.cart-backdrop.active {
+    transform: translate(0, 0);
+}
+.cart-model {
+    top: 0;
+    left: unset;
+    right: 0;
+    height: 100vh;
+    transform: translate(100%, 0%);
+    width: 100%;
+    max-width: 470px;
+    background-color: #fff;
+    border-radius: 0px;
+}
+.cart-model.active {
+    transform: translate(0, 0);
+}
+.cart-model .model-inner {
+    padding-top: 40px;
+}
+.cart-main-item {
+}
+.cart-main-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 4px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #0e0e0ee3;
+    border-radius: 12px;
+    padding: 8px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.cart-img-box {
+    flex-basis: 25%;
+    width: 25%;
+    overflow: hidden;
+    border-radius: 4px;
+    height: 50px;
+}
+.cart-img-box img {
+    width: 100%;
+    height: 100%;
+}
+.name-price {
+    flex-basis: calc(32% - 2px);
+    width: calc(32% - 2px);
+}
+.name-price p {
+    font-size: 12px;
+    color: #fff;
+}
+.name-price p:first-child {
+    margin-bottom: 8px;
+}
+.increment-decrement {
+    flex-basis: calc(30% -2px);
+    width: calc(30% - 2px);
+}
+.increment-decrement button,
+.cart-item-trash button {
+    color: #fff;
+    background-color: #0077ba;
+    border: 1px solid #0077ba;
+    border-radius: 3px;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    transition: all 0.7s ease-in-out;
+}
+.increment-decrement button:is(:hover, :active, :focus),
+.cart-item-trash button:is(:hover, :active, :focus) {
+    color: #fff;
+    background-color: #f16524;
+    border-color: #f16524;
+}
+.increment-decrement span {
+    margin-inline: 5px;
+    color: #fff;
+}
+.cart-item-trash {
+    flex-basis: 13%;
+    width: 13%;
+}
+.cart-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.total-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 20px;
+    background-color: #0077ba;
+    color: #fff;
+    padding-block: 20px;
+}
+.check-out {
+    text-align: center;
+}
+.check-out-btn {
+    width: 100%;
+    background-color: #4e545a;
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 0px;
+}
+.check-out-btn::before {
+    background-color: #f29221;
+}
+/* cartItemModel.blade.php end */
+
+/* forgotPasswordModel.blade.php-start */
+.forgotPassword-model-backdrop.active {
+    transform: translate(0);
+}
+.model.forgotPassword-contact-box {
+    background-color: #2a2a2a;
+}
+.forgotPassword-contact-box.active {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/* forgotPasswordModel.blade.php-end */
+
+/* resetPassword.blade.php-start */
+.backdrop.reset-password-model-backdrop {
+    transform: translate(0);
+}
+.model.reset-password-model {
+    top: 50%;
+}
+/* resetPassword.blade.php-end */

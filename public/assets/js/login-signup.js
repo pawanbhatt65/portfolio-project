@@ -1,7 +1,8 @@
 import {
     showModelHandler,
     closeModelHandler,
-    emailChangeHandler,loginPasswordChangeHandler,
+    emailChangeHandler,
+    loginPasswordChangeHandler,
     subjectChangeHandler,
     passwordShowHideFunctionHandler,
     preventFormSubmitHandler,
@@ -76,11 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (lonInBtn) {
         lonInBtn.addEventListener("click", function (event) {
             event.preventDefault();
-            loginEmail.value="";
-            loginPassword.value="";
+            loginEmail.value = "";
+            loginPassword.value = "";
             showModelHandler(logInModelBackdrop, logInContactBox);
         });
         closeLoginModel.addEventListener("click", function () {
+            closeModelHandler(body, logInModelBackdrop, logInContactBox);
+        });
+        logInModelBackdrop.addEventListener("click", function () {
             closeModelHandler(body, logInModelBackdrop, logInContactBox);
         });
         // submit login form key up and submit function
@@ -89,7 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 "keyup",
                 emailChangeHandler.bind(loginEmailError)
             );
-            loginPassword.addEventListener("keyup", loginPasswordChangeHandler.bind(loginPasswordError));
+            loginPassword.addEventListener(
+                "keyup",
+                loginPasswordChangeHandler.bind(loginPasswordError)
+            );
             logInPasswordShowHide.addEventListener("click", function () {
                 passwordShowHideFunctionHandler(
                     loginPassword,
@@ -131,10 +138,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         preventFormSubmitHandler(
                             loginPassword,
                             (loginPasswordError.textContent =
-                                "Please enter your valid password!"), event
+                                "Please enter your valid password!"),
+                            event
                         );
                         return false;
-                    }else {
+                    } else {
                         return;
                     }
                     // try {
@@ -241,6 +249,13 @@ document.addEventListener("DOMContentLoaded", function () {
             showModelHandler(registerModelBackdrop, registerModelContactBox);
         });
         closeRegisterModel.addEventListener("click", function () {
+            closeModelHandler(
+                body,
+                registerModelBackdrop,
+                registerModelContactBox
+            );
+        });
+        registerModelBackdrop.addEventListener("click", function () {
             closeModelHandler(
                 body,
                 registerModelBackdrop,
@@ -400,77 +415,107 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     try {
-                        const data = new FormData(registerFormSubmitHandler);
+                        let data = new FormData(registerFormSubmitHandler);
                         const url = registerRoute;
                         // console.log("url is: ", url)
                         // debugger;
 
                         const response = await fetch(url, {
                             method: "POST",
+                            headers: {
+                                "X-Requested-With": "XMLHttpRequest",
+                                "X-CSRF-TOKEN": document
+                                    .querySelector("meta[name='csrf-token']")
+                                    .getAttribute("content"),
+                            },
                             body: data,
                         });
 
-                        if (response.ok) {
-                            const dataResponse = await response.json();
+                        if (!response.ok) {
+                            const errorData=await response.json();
+                            // console.log("error data is: ", errorData)
+                            closeModelHandler(
+                                body,
+                                registerModelBackdrop,
+                                registerModelContactBox
+                            );
+                            showEveryModelFunctionHandler(
+                                everyModelBackDrop,
+                                everyModelBox,
+                                everyModelHeading.textContent = errorData.message
+                            );
+                            throw new Error(
+                                "Response not okay!",
+                                response.statusText
+                            );
+                        }
 
-                            if (dataResponse.message === "mail_send") {
-                                closeModelHandler(
-                                    body,
-                                    registerModelBackdrop,
-                                    registerModelContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "You have successfully registered with us!")
-                                );
-                            } else if (
-                                dataResponse.message === "user_data_not_saved"
-                            ) {
-                                closeModelHandler(
-                                    body,
-                                    registerModelBackdrop,
-                                    registerModelContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "User data not saved!")
-                                );
-                            } else if (
-                                dataResponse.message === "already_register"
-                            ) {
-                                closeModelHandler(
-                                    body,
-                                    registerModelBackdrop,
-                                    registerModelContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "You are already registered with us!")
-                                );
-                            } else {
-                                closeModelHandler(
-                                    body,
-                                    registerModelBackdrop,
-                                    registerModelContactBox
-                                );
-                                showEveryModelFunctionHandler(
-                                    everyModelBackDrop,
-                                    everyModelBox,
-                                    (everyModelHeading.textContent =
-                                        "Something want wrong!")
-                                );
-                            }
+                        const dataResponse = await response.json();
+                        if (dataResponse.message === "mail_send") {
+                            closeModelHandler(
+                                body,
+                                registerModelBackdrop,
+                                registerModelContactBox
+                            );
+                            showEveryModelFunctionHandler(
+                                everyModelBackDrop,
+                                everyModelBox,
+                                (everyModelHeading.textContent =
+                                    "Registration has been successful verify your email!")
+                            );
+                        } else if (
+                            dataResponse.message === "user_data_not_saved"
+                        ) {
+                            closeModelHandler(
+                                body,
+                                registerModelBackdrop,
+                                registerModelContactBox
+                            );
+                            showEveryModelFunctionHandler(
+                                everyModelBackDrop,
+                                everyModelBox,
+                                (everyModelHeading.textContent =
+                                    "User data not saved!")
+                            );
+                        } else if (
+                            dataResponse.message === "already_register"
+                        ) {
+                            closeModelHandler(
+                                body,
+                                registerModelBackdrop,
+                                registerModelContactBox
+                            );
+                            showEveryModelFunctionHandler(
+                                everyModelBackDrop,
+                                everyModelBox,
+                                (everyModelHeading.textContent =
+                                    "You are already registered with us!")
+                            );
                         } else {
-                            console.error("Server error:");
+                            closeModelHandler(
+                                body,
+                                registerModelBackdrop,
+                                registerModelContactBox
+                            );
+                            showEveryModelFunctionHandler(
+                                everyModelBackDrop,
+                                everyModelBox,
+                                (everyModelHeading.textContent =
+                                    "Something want wrong!")
+                            );
                         }
                     } catch (error) {
-                        console.error("Error:", error.message);
+                        closeModelHandler(
+                            body,
+                            registerModelBackdrop,
+                            registerModelContactBox
+                        );
+                        showEveryModelFunctionHandler(
+                            everyModelBackDrop,
+                            everyModelBox,
+                            everyModelHeading.textContent = error.message
+                        );
+                        // console.error("Error:", error.message);
                     }
                 }
             );

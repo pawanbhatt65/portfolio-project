@@ -9,8 +9,17 @@
 </head>
 
 <body>
-    <h1>Hello, Thank you</h1>
-    <p>{{ $userRegister->name }}</p>
+    <p style="margin-bottom: 15px;">Dear {{ $userRegister->name }},</p>
+
+
+    <p style="margin-bottom: 15px;">
+        You are succesfully registered. Please
+        <a href="{{ env('APP_URL') }}verify-mail?code={{ $userRegister->user_register_id }}">click</a>
+        here to activate your account.
+    </p>
+
+    <p style="margin-bottom: 8px;">Regards,</p>
+    <p>{{ env('APP_NAME') }}</p>
 </body>
 
 </html>

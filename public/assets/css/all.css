@@ -229,3 +229,8 @@ input[type="submit"] {
 .centered {
     text-align: center;
 }
+.items-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
