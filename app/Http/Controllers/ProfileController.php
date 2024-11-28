@@ -161,7 +161,7 @@ class ProfileController extends Controller
     // updatePasswordSendMail function
     public function updatePasswordSendMail(Request $req)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['Request_METHOD'] == 'POST') {
             $rules = [
                 'updatePasswordEmail' => 'required|email',
                 'updateCurrentPassword' => 'required|min:8',
