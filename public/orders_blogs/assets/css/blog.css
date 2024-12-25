@@ -1,0 +1,32 @@
+/* css for-blog-detail-page-start */
+.show-comment {
+    width: 100%;
+}
+.user {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.user > figure {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+.user > figure > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+/* css for-blog-detail-page-end */
+
+/* create_order.view.php page-start */
+.qun-am-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.qun-am {
+    flex-basis: calc(33% - 5px);
+}
+/* create_order.view.php page-end */

@@ -246,12 +246,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
             //     let response=await fetch(url, {
             //         method: "POST",
-            //         headers: {
-            //             "X-Requested-With": "XMLHttpRequest",
-            //             "X-CSRF-TOKEN": document
-            //                 .querySelector("meta[name='csrf-token']")
-            //                 .getAttribute("content"),
-            //         },
+                    // headers: {
+                    //     "X-Requested-With": "XMLHttpRequest",
+                    //     "X-CSRF-TOKEN": document
+                    //         .querySelector("meta[name='csrf-token']")
+                    //         .getAttribute("content"),
+                    // },
             //         body: formData,
             //     });
 

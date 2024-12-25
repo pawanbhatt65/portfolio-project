@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
  */
-
-Route::get('/run-command', function () {
-    Artisan::call('optimize:clear');
-    return 'Migration ran successfully!';
-});
+//  Route::get('/run-command', function () {
+//     Artisan::call('optimize:clear');
+//     return 'Migration ran successfully!';
+// });
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [MainController::class, 'home'])->name('home');

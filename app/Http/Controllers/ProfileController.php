@@ -8,6 +8,7 @@ use App\Models\UserRegister;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Response;
@@ -59,10 +60,13 @@ class ProfileController extends Controller
 
         $name = $req->itemName;
         $price = $req->itemPrice;
-        $image = $req->itemImage;
-        $image_name = $name . '-' . time() . '.' . $image->getClientOriginalExtension();
+        $image = $req->file('itemImage');
+
+        $new_name = str_replace([' ', '/'], ['_', '_'], $name);
+        Log::info("new name is", ['new_name' => $new_name]);
+        $image_name = strtolower($new_name) . '-' . time() . '.' . $image->getClientOriginalExtension();
         $public_path = public_path('assets/products/');
-        !is_dir($public_path) && mkdir($public_path);
+        !is_dir($public_path) && mkdir($public_path, 0777, true);
         $image->move($public_path, $image_name);
         $url = env('APP_URL') . "assets/products/" . $image_name;
 
@@ -113,13 +117,16 @@ class ProfileController extends Controller
 
         $name = $req->itemName;
         $price = $req->itemPrice;
-        $image = $req->itemImage;
+        $image = $req->file('itemImage');
 
+        $new_name = str_replace([' ', '/'], ['_', '_'], $name);
+        Log::info("new name is", ['new_name' => $new_name]);
         $public_path = public_path('assets/products/');
-        !is_dir($public_path) && mkdir($public_path);
-        $image_name = $name . '-' . time() . '.' . $image->getClientOriginalExtension();
+        !is_dir($public_path) && mkdir($public_path, 0777, true);
+        $image_name = strtolower($new_name) . '-' . time() . '.' . $image->getClientOriginalExtension();
         $image->move($public_path, $image_name);
-        $url = env('APP_URL') . "assets/products/" . $image_name;
+        $url = rtrim(env('APP_URL'), '/') . "/assets/products/" . $image_name;
+        // dd($url);
 
         $description = $req->itemDescription;
         $date = Carbon::now();
@@ -169,7 +176,7 @@ class ProfileController extends Controller
                 'confirmNewUpdatedPassword' => 'required|same:updateNewPassword|string',
             ];
             $req->validate($rules);
-            $user_id = session('user_id');
+            $user_id = (int) session('user_id');
             $email = $req->updatePasswordEmail;
             $current_password = md5($req->updateCurrentPassword);
             $update_new_password = md5($req->updateNewPassword);
